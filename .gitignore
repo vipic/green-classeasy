@@ -1,0 +1,6 @@
+.idea/
+下载/
+templates/
+/venv
+/node_modules
+*/coverage
