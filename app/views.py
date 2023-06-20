@@ -28,7 +28,6 @@ def query():
     if "timestamp" in params:
         url = f'http://m.classeasy.cn/make/wx/notes?v={params["timestamp"]}'
 
-
     cookies = {"GWSESSION": params['cookie']}
     print(url)
     try:
@@ -51,7 +50,6 @@ def download():
     dd = pick(params['id'], res.data)
     result = download_task(dd)
     return make_success_response(result)
-
 
 
 @app.route('/download_all', methods=["post"])
