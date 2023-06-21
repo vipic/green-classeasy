@@ -26,10 +26,18 @@ def download_file(file, folder="dist", base_path="https://res.classeasy.cn/prod/
 
     else:
         print(f"正在下载文件，{file}")
-        f = requests.get(link, headers=header)
-        with open(local_file, 'wb') as code:
-            code.write(f.content)
-            code.flush()
+        try:
+            f = requests.get(link, headers=header)
+            with open(local_file, 'wb') as code:
+                code.write(f.content)
+                code.flush()
+        except:
+            with open(os.path.join(f"logs", f"{folder}.log"), mode="a+") as logs:
+                logs.write(f"{local_file} 下载失败\n")
+        else:
+            with open(os.path.join(f"logs", f"{folder}.log"), mode="a+") as logs:
+                logs.write(f"{local_file} 下载成功\n")
+
 
 
 class Downloader(Thread):
